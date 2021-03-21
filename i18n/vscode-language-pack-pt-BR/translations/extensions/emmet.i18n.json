@@ -11,7 +11,6 @@
 		"package": {
 			"description": "Suporte Emmet para VS Code",
 			"command.wrapWithAbbreviation": "Quebrar Linha com Abreviação",
-			"command.wrapIndividualLinesWithAbbreviation": "Quebrar Linhas Individuais com Abreviação",
 			"command.removeTag": "Remover Marca",
 			"command.updateTag": "Atualizar Marca",
 			"command.matchTag": "Ir para Par Correspondente",
@@ -33,6 +32,7 @@
 			"command.decrementNumberByOneTenth": "Decrementar em 0,1",
 			"command.incrementNumberByTen": "Incrementar em 10",
 			"command.decrementNumberByTen": "Decrementar em 10",
+			"command.showEmmetCommands": "Mostrar Comandos do Emmet",
 			"emmetSyntaxProfiles": "Definir o perfil para a sintaxe especificada ou usar seu próprio perfil com regras específicas.",
 			"emmetExclude": "Uma matriz de linguagens na qual as abreviações Emmet não devem ser expandidas.",
 			"emmetExtensionsPath": "Caminho para uma pasta que contém perfis e snippets do Emmet.",
@@ -64,7 +64,12 @@
 			"emmetPreferencesCssOProperties": "Propriedades do CSS separadas por vírgulas que recebem o prefixo de fornecedor 'o' quando usadas na abreviação do Emmet que começa com `-`. Defina como cadeia de caracteres vazia para sempre evitar o prefixo 'o'.",
 			"emmetPreferencesCssMsProperties": "Propriedades do CSS separadas por vírgulas que recebem o prefixo de fornecedor 'ms' quando usadas na abreviação do Emmet que começa com `-`. Defina como cadeia de caracteres vazia para sempre evitar o prefixo 'ms'.",
 			"emmetPreferencesCssFuzzySearchMinScore": "A pontuação mínima (de 0 a 1) que a abreviação com correspondência difusa deve obter. Valores inferiores podem produzir muitas correspondências falso positivas, valores maiores podem reduzir possíveis correspondências.",
-			"emmetOptimizeStylesheetParsing": "Quando definido como `false`, todo o arquivo é analisado para determinar se a posição atual é válida para expandir as abreviações do Emmet. Quando definido como `true`, somente o conteúdo ao redor da posição atual em arquivos css/scss/less é analisado."
+			"emmetOptimizeStylesheetParsing": "Quando definido como `false`, todo o arquivo é analisado para determinar se a posição atual é válida para expandir as abreviações do Emmet. Quando definido como `true`, somente o conteúdo ao redor da posição atual em arquivos css/scss/less é analisado.",
+			"emmetPreferencesOutputReverseAttributes": "Quando é `true`, esta opção inverte as direções de mesclagem de atributo durante a resolução de snippets.",
+			"emmetPreferencesCssColorShort": "Se esta opção for `true`, os valores de cor, como #f, serão expandidos para #fff em vez de #ffffff."
+		},
+		"dist\\node/abbreviationActions": {
+			"wrapWithAbbreviationPrompt": "Inserir uma Abreviação"
 		}
 	}
 }

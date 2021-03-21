@@ -18,6 +18,7 @@
 			"typescript.tsdk.desc": "IntelliSense için kullanmak üzere bir TypeScript yüklemesi altındaki tsserver ve lib*.d.ts dosyalarına yönelik klasör yolunu belirtir, örneğin: `./node_modules/typescript/lib`.\r\n\r\n- Kullanıcı ayarı olarak belirtildiğinde, `typescript.tsdk` dosyasındaki TypeScript sürümü, otomatik olarak yerleşik TypeScript sürümünün yerini alır.\r\n- Çalışma alanı ayarı olarak belirtildiğinde, `typescript.tsdk`, `TypeScript: Select TypeScript version` komutuyla IntelliSense için TypeScript'in ilgili çalışma alanı sürümünü kullanmanızı sağlar.\r\n\r\nTypeScript sürümlerini yönetme hakkında daha fazla bilgi için [TypeScript belgelerine](https://code.visualstudio.com/docs/typescript/typescript-compiling#_using-newer-typescript-versions) bakın.",
 			"typescript.disableAutomaticTypeAcquisition": "Otomatik tür alımını devre dışı bırakır. Otomatik tür alımı, dış kitaplıklar için IntelliSense'i iyileştirmek üzere npm'den `@types` paketlerini getirir.",
 			"typescript.enablePromptUseWorkspaceTsdk": "Kullanıcıların IntelliSense için çalışma alanında yapılandırılan TypeScript sürümünü kullanmalarını isteme olanağı sağlar.",
+			"typescript.tsserver.enableTracing": "TS sunucusu performansını dizinde izlemeyi etkinleştirir. Bu izleme dosyaları, TS Sunucusu sorunlarını tanılamak için kullanılabilir. Günlükte, projenizdeki dosya yolları, kaynak kodu ve diğer olası hassas bilgiler bulunabilir.",
 			"typescript.tsserver.log": "TS sunucusu günlüğünün bir dosyaya yazılmasını etkinleştirir. Bu günlük, TS Sunucusu sorunlarını tanılamak için kullanılabilir. Günlükte, projenizden dosya yolları, kaynak kodu ve diğer olası hassas bilgiler bulunabilir.",
 			"typescript.tsserver.pluginPaths": "TypeScript Dil Hizmeti eklentilerini keşfetmenin diğer yolları.",
 			"typescript.tsserver.pluginPaths.item": "Mutlak veya göreli yol olabilir. Göreli yol çalışma alanı klasörlerinde çözümlenir.",
@@ -56,7 +57,6 @@
 			"typescript.restartTsServer": "TS sunucusunu yeniden başlat",
 			"typescript.selectTypeScriptVersion.title": "TypeScript Sürümünü Seçin...",
 			"typescript.reportStyleChecksAsWarnings": "Stil denetimlerini uyarı olarak raporlayın.",
-			"javascript.implicitProjectConfig.checkJs": "JavaScript dosyalarının anlamsal denetimini etkinleştirin/devre dışı bırakın. Mevcut jsconfig.json veya tsconfig.json dosyaları bu ayarı geçersiz kılar.",
 			"typescript.npm": "Otomatik Tür Alma için kullanılan npm yürütülebilir dosyasının yolunu belirtir.",
 			"typescript.check.npmIsInstalled": "Otomatik Tür Alımı için npm'nin yüklü olup olmadığını denetleyin.",
 			"configuration.suggest.names": "JavaScript önerilerinde benzersiz adları dosyadan eklemeyi etkinleştirin/devre dışı bırakın. Ad önerilerinin `@ts-check` veya `checkJs` kullanılarak anlamsal olarak denetlenen JavaScript kodunda her zaman devre dışı bırakıldığını unutmayın.",
@@ -72,16 +72,23 @@
 			"configuration.tsserver.maxTsServerMemory": "TypeScript sunucu işlemine ayrılacak bellek miktarı üst sınırını (MB cinsinden) ayarlayın",
 			"configuration.tsserver.experimental.enableProjectDiagnostics": "(Deneysel) Proje genelinde hata raporlaması sağlar.",
 			"typescript.locale": "JavaScript ve TypeScript hatalarını bildirmek için kullanılan yerel ayarı belirler. Varsayılan değer olan `null`, VS Code'un yerel ayarını kullanır.",
-			"javascript.implicitProjectConfig.experimentalDecorators": "Bir projenin parçası olmayan JavaScript dosyaları için `experimentalDecorators` öğesini etkinleştirin/devre dışı bırakın. Mevcut jsconfig.json veya tsconfig.json dosyaları bu ayarı geçersiz kılar.",
+			"configuration.implicitProjectConfig.checkJs": "JavaScript dosyalarının anlamsal denetimini etkinleştirin/devre dışı bırakın. Mevcut `jsconfig.json` veya `tsconfig.json` dosyaları bu ayarı geçersiz kılar.",
+			"configuration.javascript.checkJs.checkJs.deprecation": "Bu ayar kullanım dışı bırakıldı ve yerini `js/ts.implicitProjectConfig.checkJs` aldı.",
+			"configuration.implicitProjectConfig.experimentalDecorators": "Bir projenin parçası olmayan JavaScript dosyalarında `experimentalDecorators` seçeneğini etkinleştirin/devre dışı bırakın. Mevcut `jsconfig.json` veya `tsconfig.json` dosyaları bu ayarı geçersiz kılar.",
+			"configuration.javascript.checkJs.experimentalDecorators.deprecation": "Bu ayar kullanım dışı bırakıldı ve yerini `js/ts.implicitProjectConfig.experimentalDecorators` aldı.",
+			"configuration.implicitProjectConfig.strictNullChecks": "Bir projenin parçası olmayan JavaScript ve TypeScript dosyalarında [katı null denetimlerini](https://www.typescriptlang.org/tsconfig#strictNullChecks) etkinleştirin/devre dışı bırakın. Mevcut `jsconfig.json` veya `tsconfig.json` dosyaları bu ayarı geçersiz kılar.",
+			"configuration.implicitProjectConfig.strictFunctionTypes": "Bir projenin parçası olmayan JavaScript ve TypeScript dosyalarında [katı işlev türlerini](https://www.typescriptlang.org/tsconfig#strictFunctionTypes) etkinleştirin/devre dışı bırakın. Mevcut `jsconfig.json` veya `tsconfig.json` dosyaları bu ayarı geçersiz kılar.",
+			"configuration.suggest.jsdoc.generateReturns": "JSDoc şablonları için `@return` ek açıklamaları oluşturmayı etkinleştirin/devre dışı bırakın. Çalışma alanında TypeScript 4.2+ kullanılması gerekir.",
 			"configuration.suggest.autoImports": "Otomatik içeri aktarma önerilerini etkinleştirin/devre dışı bırakın.",
 			"taskDefinition.tsconfig.description": "TS derlemesini tanımlayan tsconfig dosyası.",
 			"javascript.suggestionActions.enabled": "Düzenleyicideki JavaScript dosyaları için öneri tanılamayı etkinleştirin/devre dışı bırakın.",
 			"typescript.suggestionActions.enabled": "Düzenleyicideki TypeScript dosyaları için öneri tanılamayı etkinleştirin/devre dışı bırakın.",
 			"typescript.preferences.quoteStyle": "Hızlı düzeltmeler için kullanılacak tercih edilen tırnak işareti stili: tek tırnak işaretleri için `single`, çift tırnak işaretleri için `double` veya tırnak türünü mevcut içeri aktarmalardan çıkarsamak için `auto`.",
 			"typescript.preferences.importModuleSpecifier": "Otomatik içeri aktarmalar için tercih edilen yol stili.",
-			"typescript.preferences.importModuleSpecifier.auto": "İçeri aktarma yolu stilini otomatik olarak seçin. `baseUrl` yapılandırıldıysa ve göreli yolun göreli olmayan içeri aktarmadan daha az sayıda kesimi varsa göreli içeri aktarma işleminin kullanılması tercih edilir.",
-			"typescript.preferences.importModuleSpecifier.relative": "Dosya konumuna göreli.",
-			"typescript.preferences.importModuleSpecifier.nonRelative": "`jsconfig.json` / `tsconfig.json` içinde yapılandırılan `baseUrl` temel alınır.",
+			"typescript.preferences.importModuleSpecifier.shortest": "Yalnızca göreli içeri aktarmaya göre daha az yol segmentine sahip bir içeri aktarma varsa göreli olmayan içeri aktarmayı tercih eder.",
+			"typescript.preferences.importModuleSpecifier.relative": "İçeri aktarılan dosya konumuna göreli yolu tercih eder.",
+			"typescript.preferences.importModuleSpecifier.nonRelative": "`jsconfig.json` / `tsconfig.json` içinde yapılandırılan ve `baseUrl` veya `paths` temelinde göreli olmayan içeri aktarmayı tercih eder.",
+			"typescript.preferences.importModuleSpecifier.projectRelative": "Yalnızca göreli içeri aktarma yolu paket veya proje dizininden ayrılıyorsa göreli olmayan içeri aktarmayı tercih eder. Çalışma alanında TypeScript 4.2+ kullanmayı gerektirir.",
 			"typescript.preferences.importModuleSpecifierEnding": "Otomatik içeri aktarmalar için tercih edilen yol bitişi.",
 			"typescript.preferences.importModuleSpecifierEnding.auto": "Varsayılan bir değeri seçmek için proje ayarlarını kullanın.",
 			"typescript.preferences.importModuleSpecifierEnding.minimal": "`./component/index.js` değerini `./component` olarak kısaltın.",
@@ -101,12 +108,14 @@
 			"configuration.suggest.completeJSDocs": "JSDoc yorumlarını tamamlamak için öneriyi etkinleştirin/devre dışı bırakın.",
 			"configuration.tsserver.watchOptions": "Dosya ve dizinleri izlemek için kullanılacak izleme stratejilerini yapılandırın. Çalışma alanında TypeScript 3.8+ kullanılmasını gerektirir.",
 			"configuration.tsserver.watchOptions.watchFile": "Tek tek dosyaların izlenmesine yönelik strateji.",
+			"configuration.tsserver.watchOptions.watchFile.fixedChunkSizePolling": "Polls files in chunks at regular interval. Requires using TypeScript 4.3+ in the workspace.",
 			"configuration.tsserver.watchOptions.watchFile.fixedPollingInterval": "Her dosyayı sabit bir zaman aralığında saniyede birkaç kez değişiklikler için denetleyin.",
 			"configuration.tsserver.watchOptions.watchFile.priorityPollingInterval": "Her dosyayı saniyede birkaç kez değişiklikler için denetleyin, ancak bazı dosya türlerini diğerlerine göre daha az sıklıkla denetlemek için buluşsal yöntemleri kullanın.",
 			"configuration.tsserver.watchOptions.watchFile.dynamicPriorityPolling": "Daha az değiştirilen dosyaların daha az sıklıkta denetlendiği bir dinamik kuyruk kullanın.",
 			"configuration.tsserver.watchOptions.watchFile.useFsEvents": "Dosya değişiklikleri için işletim sisteminin/dosya sisteminin yerel olaylarını kullanmaya çalışın.",
 			"configuration.tsserver.watchOptions.watchFile.useFsEventsOnParentDirectory": "Bir dosyanın bulunduğu dizinlere ilişkin değişiklikleri dinlemek için işletim sisteminin/dosya sisteminin yerel olaylarını kullanmaya çalışın. Bu, daha az dosya izleyicisi kullanabilir, ancak daha az doğru olabilir.",
 			"configuration.tsserver.watchOptions.watchDirectory": "Özyinelemeli dosya izleme işlevi olmayan sistemler altında tüm dizin ağaçlarının izlenmesine yönelik strateji.",
+			"configuration.tsserver.watchOptions.watchDirectory.fixedChunkSizePolling": "Polls directories in chunks at regular interval. Requires using TypeScript 4.3+ in the workspace.",
 			"configuration.tsserver.watchOptions.watchDirectory.fixedPollingInterval": "Her dizini sabit bir zaman aralığında saniyede birkaç kez değişiklikler için denetleyin.",
 			"configuration.tsserver.watchOptions.watchDirectory.dynamicPriorityPolling": "Daha az değiştirilen dizinlerin daha az sıklıkta denetlendiği dinamik bir kuyruk kullanın.",
 			"configuration.tsserver.watchOptions.watchDirectory.useFsEvents": "Dizin değişiklikleri için işletim sisteminin/dosya sisteminin yerel olaylarını kullanmaya çalışın.",
@@ -139,7 +148,8 @@
 			"codeActions.refactor.rewrite.parameters.toDestructured.title": "Parametreleri, bozulan nesneye dönüştürün",
 			"codeActions.refactor.rewrite.property.generateAccessors.title": "Erişimci üretme",
 			"codeActions.refactor.rewrite.property.generateAccessors.description": "'get' ve 'set' erişimcilerini oluşturun",
-			"codeActions.source.organizeImports.title": "İçeri aktarmaları düzenle"
+			"codeActions.source.organizeImports.title": "İçeri aktarmaları düzenle",
+			"typescript.findAllFileReferences": "Dosya Başvurularını Bul"
 		},
 		"dist/utils/api": {
 			"invalidVersion": "geçersiz sürüm"
@@ -156,11 +166,19 @@
 		"dist/languageFeatures/codeLens/baseCodeLensProvider": {
 			"referenceErrorLabel": "Başvurular belirlenemedi"
 		},
+		"dist/languageFeatures/codeLens/implementationsCodeLens": {
+			"oneImplementationLabel": "1 uygulama",
+			"manyImplementationLabel": "{0} uygulama"
+		},
+		"dist/languageFeatures/codeLens/referencesCodeLens": {
+			"oneReferenceLabel": "1 başvuru",
+			"manyReferenceLabel": "{0} başvuru"
+		},
 		"dist/languageFeatures/completions": {
+			"autoImportLabel": "{0} kaynağından otomatik içe aktar",
 			"selectCodeAction": "Uygulanacak kod eylemini seçin",
 			"acquiringTypingsLabel": "Typings alınıyor...",
-			"acquiringTypingsDetail": "IntelliSense için tuşlama tanımları alınıyor...",
-			"autoImportLabel": "{0} kaynağından otomatik içe aktar"
+			"acquiringTypingsDetail": "IntelliSense için tuşlama tanımları alınıyor."
 		},
 		"dist/languageFeatures/directiveCommentCompletions": {
 			"ts-check": "Bir JavaScript dosyasının anlamsal kontrolünü etkinleştirir. Bir dosyanın en üstünde olmalıdır.",
@@ -168,9 +186,17 @@
 			"ts-ignore": "Bir dosyanın sonraki satırında @ts-check hatalarını bastırır.",
 			"ts-expect-error": "Dosyanın bir sonraki satırındaki @ts-check hatalarını gizler, en az bir hata bulunmasını bekler."
 		},
-		"dist/languageFeatures/codeLens/implementationsCodeLens": {
-			"oneImplementationLabel": "1 uygulama",
-			"manyImplementationLabel": "{0} uygulama"
+		"dist/languageFeatures/fileReferences": {
+			"error.unsupportedVersion": "Dosya başvuruları bulunamadı. TypeScript 4.2+ gerekir.",
+			"error.noResource": "Dosya başvuruları bulunamadı. Kaynak sağlanmadı.",
+			"error.unsupportedLanguage": "Dosya başvuruları bulunamadı. Dosya türü desteklenmiyor.",
+			"error.unknownFile": "Dosya başvuruları bulunamadı. Dosya türü bilinmiyor.",
+			"progress.title": "Dosya başvuruları bulunuyor"
+		},
+		"dist/languageFeatures/fixAll": {
+			"autoFix.label": "Tümünü Düzelt",
+			"autoFix.unused.label": "Tüm kullanılmayan kodları kaldır",
+			"autoFix.missingImports.label": "Tüm eksik içeri aktarmaları ekleyin"
 		},
 		"dist/languageFeatures/jsDocCompletions": {
 			"typescript.jsDocCompletionItem.documentation": "JSDoc yorumu"
@@ -181,11 +207,6 @@
 		"dist/languageFeatures/quickFix": {
 			"fixAllInFileLabel": "{0} (Dosyadaki tümünü düzelt)"
 		},
-		"dist/languageFeatures/fixAll": {
-			"autoFix.label": "Tümünü Düzelt",
-			"autoFix.unused.label": "Tüm kullanılmayan kodları kaldır",
-			"autoFix.missingImports.label": "Tüm eksik içeri aktarmaları ekleyin"
-		},
 		"dist/languageFeatures/refactor": {
 			"refactoringFailed": "Yeniden düzenleme uygulanamadı",
 			"extractConstant.disabled.title": "Sabite ayıkla",
@@ -194,16 +215,13 @@
 			"extractFunction.disabled.reason": "Geçerli seçim ayıklanamıyor",
 			"refactor.documentation.title": "JS/TS yeniden düzenlemeleri hakkında daha fazla bilgi edinin"
 		},
-		"dist/languageFeatures/codeLens/referencesCodeLens": {
-			"oneReferenceLabel": "1 başvuru",
-			"manyReferenceLabel": "{0} başvuru"
-		},
 		"dist/languageFeatures/rename": {
 			"fileRenameFail": "Dosya yeniden adlandırılırken bir hata oluştu"
 		},
 		"dist/tsServer/versionStatus": {
 			"projectQuickPick.placeholder": "TypeScript Proje Bilgileri",
 			"projectQuickPick.version.label": "TypeScript Sürümünü Seçin...",
+			"projectQuickPick.version.description": "[geçerli = {0}]",
 			"projectQuickPick.project.create": "tsconfig oluştur",
 			"projectQuickPick.project.create.description": "Bu dosya şu anda bir tsconfig/jsconfig projesinin parçası değil",
 			"projectQuickPick.version.goProjectConfig": "Tsconfig'i aç",
@@ -235,18 +253,6 @@
 		},
 		"dist/utils/logger": {
 			"channelName": "TypeScript"
-		},
-		"dist/utils/typingsStatus": {
-			"installingPackages": "Daha iyi TypeScript IntelliSense için veriler getiriliyor",
-			"typesInstallerInitializationFailed.doNotCheckAgain": "Tekrar Gösterme",
-			"typesInstallerInitializationFailed.title": "JavaScript dil özellikleri için typings dosyaları yüklenemedi. Lütfen NPM'nin yüklü olduğundan emin olun veya kullanıcı ayarlarınızda 'typescript.npm' dosyasını yapılandırın. Daha fazla bilgi için [buraya]({0}) tıklayın."
-		},
-		"dist/utils/largeProjectStatus": {
-			"statusExclude": "TypeScript: Dışlamaları Yapılandır",
-			"hintExclude": "Proje genelinde JavaScript/TypeScript dil özelliklerini etkinleştirmek için şunun gibi çok sayıda dosya içeren klasörleri hariç tutun: {0}",
-			"hintExclude.generic": "Proje genelinde JavaScript/TypeScript dil özelliklerini etkinleştirmek için üzerinde çalışmadığınız kaynak dosyalar içeren büyük klasörleri dışlayın.",
-			"large.label": "Dışlamaları Yapılandır",
-			"hintExclude.tooltip": "Proje genelinde JavaScript/TypeScript dil özelliklerini etkinleştirmek için üzerinde çalışmadığınız kaynak dosyalar içeren büyük klasörleri dışlayın."
 		},
 		"dist/languageFeatures/updatePathsOnRename": {
 			"renameProgress.title": "JS/TS içeri aktarmalarının güncelleştirmesi denetleniyor",

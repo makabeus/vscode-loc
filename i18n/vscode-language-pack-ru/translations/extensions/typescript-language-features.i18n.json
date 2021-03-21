@@ -18,6 +18,7 @@
 			"typescript.tsdk.desc": "Указывает путь к файлам tsserver и lib*.d.ts в установке TypeScript, используемой для IntelliSense, например: ./node_modules/typescript/lib.\r\n\r\n— При указании в качестве пользовательского параметра версия TypeScript из файла typescript.tsdk автоматически заменяет встроенную версию TypeScript.\r\n— При указании в качестве параметра рабочей области typescript.tsdk позволяет переключиться на использование этой версии рабочей области TypeScript для IntelliSense с помощью команды \"TypeScript: выберите версию TypeScript\".\r\n\r\nДополнительные сведения об управлении версиями TypeScript см. в [документации по TypeScript](https://code.visualstudio.com/docs/typescript/typescript-compiling#_using-newer-typescript-versions).",
 			"typescript.disableAutomaticTypeAcquisition": "Отключает автоматическое получение типа. При автоматическом получении типа выполняется получение пакетов \"@types\" из npm для улучшения работы IntelliSense для внешних библиотек.",
 			"typescript.enablePromptUseWorkspaceTsdk": "Включает вывод пользователям запросов на использование версии TypeScript, настроенной в рабочей области для IntelliSense.",
+			"typescript.tsserver.enableTracing": "Включает трассировку производительности сервера TS в каталог. Эти файлы трассировки можно использовать для диагностики проблем с производительностью сервера TS. В журнале могут содержаться пути к файлам, исходный код и другие сведения из вашего проекта, в том числе носящие конфиденциальный характер.",
 			"typescript.tsserver.log": "Включает ведение журнала для сервера TS. Этот журнал можно использовать для диагностики проблем сервера TS. В журнале могут содержаться пути к файлам, исходный код и другие сведения из вашего проекта, в том числе носящие конфиденциальный характер.",
 			"typescript.tsserver.pluginPaths": "Дополнительные пути для обнаружения подключаемых модулей языковой службы TypeScript.",
 			"typescript.tsserver.pluginPaths.item": "Абсолютный или относительный путь. Относительный путь должен быть указан относительно папок рабочей области.",
@@ -27,7 +28,7 @@
 			"javascript.format.enable": "Включение или отключение модуля форматирования JavaScript по умолчанию.",
 			"format.insertSpaceAfterCommaDelimiter": "Определяет метод обработки пробелов после разделителя-запятой.",
 			"format.insertSpaceAfterConstructor": "Определяет метод обработки пробелов после ключевого слова constructor.",
-			"format.insertSpaceAfterSemicolonInForStatements": " Определяет метод обработки пробелов после точки с запятой в операторе for.",
+			"format.insertSpaceAfterSemicolonInForStatements": "Определяет метод обработки пробелов после точки с запятой в операторе for.",
 			"format.insertSpaceBeforeAndAfterBinaryOperators": "Определяет метод обработки пробелов после двоичного оператора.",
 			"format.insertSpaceAfterKeywordsInControlFlowStatements": "Определяет метод обработки пробелов после ключевых слов в операторе управления потоком выполнения.",
 			"format.insertSpaceAfterFunctionKeywordForAnonymousFunctions": "Определяет метод обработки пробелов после ключевого слова function у анонимных функций.",
@@ -56,7 +57,6 @@
 			"typescript.restartTsServer": "Перезапустить сервер TS",
 			"typescript.selectTypeScriptVersion.title": "Выберите версию TypeScript...",
 			"typescript.reportStyleChecksAsWarnings": "Отображать ошибки при проверке стиля в виде предупреждений.",
-			"javascript.implicitProjectConfig.checkJs": "Включить или отключить семантическую проверку файлов JavaScript. Этот параметр может переопределяться в файле jsconfig.json или tsconfig.json.",
 			"typescript.npm": "Указывает путь к исполняемому файлу NPM, используемому для автоматического получения типа.",
 			"typescript.check.npmIsInstalled": "Проверяет, установлен ли NPM для автоматического получения типов.",
 			"configuration.suggest.names": "Включение/отключение добавления уникальных имен из файла в предложения JavaScript. Обратите внимание, что предложения имен всегда отключены в коде JavaScript, семантика которого проверяется с помощью \"@ts-check\" или \"checkJs\".",
@@ -72,16 +72,23 @@
 			"configuration.tsserver.maxTsServerMemory": "Задайте максимальный объем памяти (в МБ), выделяемый для процесса сервера TypeScript",
 			"configuration.tsserver.experimental.enableProjectDiagnostics": "(Экспериментальная функция) Включает ведение отчетов об ошибках в масштабе всего проекта.",
 			"typescript.locale": "Устанавливает языковой стандарт, используемый для сообщений об ошибках JavaScript и TypeScript. Значение по умолчанию — \"null\". При указании значения null используется языковой стандарт VS Code.",
-			"javascript.implicitProjectConfig.experimentalDecorators": "Включить или отключить параметр \"experimentalDecorators\" для файлов JavaScript, которые не являются частью проекта. Этот параметр может переопределяться в файле jsconfig.json или tsconfig.json.",
+			"configuration.implicitProjectConfig.checkJs": "Включение или отключение семантической проверки файлов JavaScript. Этот параметр переопределяется файлом \"jsconfig.json\" или \"tsconfig.json\".",
+			"configuration.javascript.checkJs.checkJs.deprecation": "Этот параметр устарел. Вместо него следует использовать \"js/ts.implicitProjectConfig.checkJs\".",
+			"configuration.implicitProjectConfig.experimentalDecorators": "Включение или отключение параметра \"experimentalDecorators\" в файлах JavaScript, которые не являются частью проекта. Этот параметр переопределяется файлом \"jsconfig.json\" или \"tsconfig.json\".",
+			"configuration.javascript.checkJs.experimentalDecorators.deprecation": "Этот параметр устарел. Вместо него следует использовать \"js/ts.implicitProjectConfig.experimentalDecorators\".",
+			"configuration.implicitProjectConfig.strictNullChecks": "Включение или отключение [строгих проверок значения NULL](https://www.typescriptlang.org/tsconfig#strictNullChecks) в файлах JavaScript и TypeScript, которые не являются частью проекта. Этот параметр переопределяется файлом \"jsconfig.json\" или \"tsconfig.json\".",
+			"configuration.implicitProjectConfig.strictFunctionTypes": "Включение или отключение [строгих типов функций](https://www.typescriptlang.org/tsconfig#strictFunctionTypes) в файлах JavaScript и TypeScript, которые не являются частью проекта. Этот параметр переопределяется файлом \"jsconfig.json\" или \"tsconfig.json\".",
+			"configuration.suggest.jsdoc.generateReturns": "Включение или отключение создания аннотаций \"@return\" для шаблонов JSDoc. Требуется TypeScript 4.2 или более поздней версии в рабочей области.",
 			"configuration.suggest.autoImports": "Включить или отключить предложения автоимпорта.",
 			"taskDefinition.tsconfig.description": "Файл tsconfig, который определяет сборку TS.",
 			"javascript.suggestionActions.enabled": "Включить или отключить предложения диагностики для файлов JavaScript в редакторе.",
 			"typescript.suggestionActions.enabled": "Включить или отключить предложения диагностики для файлов TypeScript в редакторе.",
 			"typescript.preferences.quoteStyle": "Предпочтительный стиль кавычек для быстрых исправлений. Допустимые значения: \"single\" (одинарные кавычки), \"double\" (двойные кавычки) и \"auto\" (использовать тип кавычек из существующих операций импорта).",
 			"typescript.preferences.importModuleSpecifier": "Предпочтительный стиль пути для автоматического импорта.",
-			"typescript.preferences.importModuleSpecifier.auto": "Автоматический выбор стиля пути импорта. Предпочтение отдается относительному импорту, если настроен \"baseUrl\", а относительный путь содержит меньше сегментов, чем безотносительный импорт.",
-			"typescript.preferences.importModuleSpecifier.relative": "Относительно расположения файла.",
-			"typescript.preferences.importModuleSpecifier.nonRelative": "На основе параметра baseUrl, заданного в файле jsconfig.json или tsconfig.json.",
+			"typescript.preferences.importModuleSpecifier.shortest": "Предпочитать неотносительный импорт, только если доступен неотносительный импорт с меньшим числом сегментов пути, чем у относительного импорта.",
+			"typescript.preferences.importModuleSpecifier.relative": "Предпочитать относительный путь к расположению импортируемого файла.",
+			"typescript.preferences.importModuleSpecifier.nonRelative": "Предпочитать неотносительный импорт на основе \"baseUrl\" или \"paths\", заданных в файле jsconfig.json/tsconfig.json.",
+			"typescript.preferences.importModuleSpecifier.projectRelative": "Предпочитать неотносительный импорт, только если путь относительного импорта выходит за пределы каталога пакета или проекта. Требуется использование TypeScript 4.2 или более поздней версии в рабочей области.",
 			"typescript.preferences.importModuleSpecifierEnding": "Предпочтительное окончание пути для автоматического импорта.",
 			"typescript.preferences.importModuleSpecifierEnding.auto": "Используйте параметры проекта для выбора значения по умолчанию.",
 			"typescript.preferences.importModuleSpecifierEnding.minimal": "Сократить `./component/index.js` до `./component`.",
@@ -101,12 +108,14 @@
 			"configuration.suggest.completeJSDocs": "Включить/отключить предложение для завершения комментариев JSDoc.",
 			"configuration.tsserver.watchOptions": "Настройка того, какие стратегии наблюдения следует использовать для отслеживания файлов и каталогов. Требует использования TypeScript 3.8+ в рабочей области.",
 			"configuration.tsserver.watchOptions.watchFile": "Стратегия просмотра отдельных файлов.",
+			"configuration.tsserver.watchOptions.watchFile.fixedChunkSizePolling": "Polls files in chunks at regular interval. Requires using TypeScript 4.3+ in the workspace.",
 			"configuration.tsserver.watchOptions.watchFile.fixedPollingInterval": "Проверка каждого файла на предмет изменений несколько раз в секунду с фиксированным интервалом.",
 			"configuration.tsserver.watchOptions.watchFile.priorityPollingInterval": "Проверка каждого файла на наличие изменений несколько раз в секунду, но с использованием эвристики, чтобы проверять определенные типы файлов реже, чем другие.",
 			"configuration.tsserver.watchOptions.watchFile.dynamicPriorityPolling": "Используйте динамическую очередь, где чем реже изменяются файлы, тем реже они проверяются.",
 			"configuration.tsserver.watchOptions.watchFile.useFsEvents": "Попытка использовать собственные события операционной или файловой системы для изменений файлов.",
 			"configuration.tsserver.watchOptions.watchFile.useFsEventsOnParentDirectory": "Попытка использования собственных событий операционной системы/файловой системы для наблюдения каталогов, содержащих файл, на предмет изменений. Такой подход позволяет использовать меньше наблюдателей файлов, но может оказаться менее точным.",
 			"configuration.tsserver.watchOptions.watchDirectory": "Стратегия того, как все деревья каталога отображаются в системах, где нет рекурсивной функции просмотра файлов.",
+			"configuration.tsserver.watchOptions.watchDirectory.fixedChunkSizePolling": "Polls directories in chunks at regular interval. Requires using TypeScript 4.3+ in the workspace.",
 			"configuration.tsserver.watchOptions.watchDirectory.fixedPollingInterval": "Проверка каждого каталога на наличие изменений несколько раз в секунду с фиксированным интервалом.",
 			"configuration.tsserver.watchOptions.watchDirectory.dynamicPriorityPolling": "Используйте динамическую очередь, где чем реже изменяются каталоги, тем реже они проверяются.",
 			"configuration.tsserver.watchOptions.watchDirectory.useFsEvents": "Попытка использовать собственные события операционной или файловой системы для изменения каталога.",
@@ -139,7 +148,8 @@
 			"codeActions.refactor.rewrite.parameters.toDestructured.title": "Преобразовать параметры в деструктурированный объект",
 			"codeActions.refactor.rewrite.property.generateAccessors.title": "Создать методы доступа",
 			"codeActions.refactor.rewrite.property.generateAccessors.description": "Создать методы доступа get и set",
-			"codeActions.source.organizeImports.title": "Организация импортов"
+			"codeActions.source.organizeImports.title": "Организация импортов",
+			"typescript.findAllFileReferences": "Найти ссылки на файлы"
 		},
 		"dist/utils/api": {
 			"invalidVersion": "Недопустимая версия"
@@ -156,11 +166,19 @@
 		"dist/languageFeatures/codeLens/baseCodeLensProvider": {
 			"referenceErrorLabel": "Не удалось определить ссылки."
 		},
+		"dist/languageFeatures/codeLens/implementationsCodeLens": {
+			"oneImplementationLabel": "1 реализация",
+			"manyImplementationLabel": "Реализаций: {0}"
+		},
+		"dist/languageFeatures/codeLens/referencesCodeLens": {
+			"oneReferenceLabel": "1 ссылка",
+			"manyReferenceLabel": "Ссылок: {0}"
+		},
 		"dist/languageFeatures/completions": {
+			"autoImportLabel": "Автоматический импорт из {0}",
 			"selectCodeAction": "Выберите применяемое действие кода",
-			"acquiringTypingsLabel": "Получение typings…",
-			"acquiringTypingsDetail": "Получение определений typings для IntelliSense.",
-			"autoImportLabel": "Автоматический импорт из {0}"
+			"acquiringTypingsLabel": "Получение typings...",
+			"acquiringTypingsDetail": "Получение определений typings для IntelliSense."
 		},
 		"dist/languageFeatures/directiveCommentCompletions": {
 			"ts-check": "Включает семантическую проверку в JavaScript файле. Необходимо расположить в самом начале файла.",
@@ -168,9 +186,17 @@
 			"ts-ignore": "Отключает вывод ошибок @ts-check для следующей строки файла.",
 			"ts-expect-error": "Подавляет ошибки @ts-check на следующей строке файла, ожидая, что по меньшей мере одна из них будет существовать."
 		},
-		"dist/languageFeatures/codeLens/implementationsCodeLens": {
-			"oneImplementationLabel": "1 реализация",
-			"manyImplementationLabel": "Реализаций: {0}"
+		"dist/languageFeatures/fileReferences": {
+			"error.unsupportedVersion": "Не удалось найти ссылки на файлы. Требуется TypeScript версии 4.2 или более поздних версий.",
+			"error.noResource": "Не удалось найти ссылки на файлы. Не указаны ресурсы.",
+			"error.unsupportedLanguage": "Не удалось найти ссылки на файлы. Неподдерживаемый тип файла.",
+			"error.unknownFile": "Не удалось найти ссылки на файлы. Неизвестный тип файла.",
+			"progress.title": "Поиск ссылок на файлы"
+		},
+		"dist/languageFeatures/fixAll": {
+			"autoFix.label": "Исправить все",
+			"autoFix.unused.label": "Удалить весь неиспользуемый код",
+			"autoFix.missingImports.label": "Добавить все недостающие импорты"
 		},
 		"dist/languageFeatures/jsDocCompletions": {
 			"typescript.jsDocCompletionItem.documentation": "Комментарий JSDoc"
@@ -181,11 +207,6 @@
 		"dist/languageFeatures/quickFix": {
 			"fixAllInFileLabel": "{0} (Исправить все в файле)"
 		},
-		"dist/languageFeatures/fixAll": {
-			"autoFix.label": "Исправить все",
-			"autoFix.unused.label": "Удалить весь неиспользуемый код",
-			"autoFix.missingImports.label": "Добавить все недостающие импорты"
-		},
 		"dist/languageFeatures/refactor": {
 			"refactoringFailed": "Не удалось применить рефакторинг",
 			"extractConstant.disabled.title": "Извлечение в константу",
@@ -194,16 +215,13 @@
 			"extractFunction.disabled.reason": "Невозможно извлечь выбранные параметры",
 			"refactor.documentation.title": "Дополнительные сведения о рефакторингах JS/TS"
 		},
-		"dist/languageFeatures/codeLens/referencesCodeLens": {
-			"oneReferenceLabel": "1 ссылка",
-			"manyReferenceLabel": "Ссылок: {0}"
-		},
 		"dist/languageFeatures/rename": {
 			"fileRenameFail": "Ошибка при переименовании файла"
 		},
 		"dist/tsServer/versionStatus": {
 			"projectQuickPick.placeholder": "Сведения о проекте TypeScript",
 			"projectQuickPick.version.label": "Выберите версию TypeScript…",
+			"projectQuickPick.version.description": "[текущий = {0}]",
 			"projectQuickPick.project.create": "Создать tsconfig",
 			"projectQuickPick.project.create.description": "Этот файл не является частью проекта tsconfig/jsconfig",
 			"projectQuickPick.version.goProjectConfig": "Открыть tsconfig",
@@ -235,18 +253,6 @@
 		},
 		"dist/utils/logger": {
 			"channelName": "TypeScript"
-		},
-		"dist/utils/typingsStatus": {
-			"installingPackages": "Получение данных для повышения эффективности IntelliSense TypeScript",
-			"typesInstallerInitializationFailed.doNotCheckAgain": "Больше не показывать",
-			"typesInstallerInitializationFailed.title": "Не удалось установить файлы типизации для языка JavaScript. Убедитесь, что NPM установлен или укажите путь к файлу 'typescript.npm' в параметрах среды пользователя. Дополнительные сведения см. [здесь]({0})."
-		},
-		"dist/utils/largeProjectStatus": {
-			"statusExclude": "TypeScript: настройка исключений",
-			"hintExclude": "Чтобы включить языковые функции JavaScript/TypeScript IntelliSense во всем проекте, исключите папки с большим числом файлов, например: {0}.",
-			"hintExclude.generic": "Чтобы включить языковые функции JavaScript/TypeScript IntelliSense во всем проекте, исключите большие папки с исходными файлами, с которыми вы не работаете.",
-			"large.label": "Настройка исключений",
-			"hintExclude.tooltip": "Чтобы включить языковые функции JavaScript/TypeScript IntelliSense во всем проекте, исключите большие папки с исходными файлами, с которыми вы не работаете."
 		},
 		"dist/languageFeatures/updatePathsOnRename": {
 			"renameProgress.title": "Проверка обновления для импортируемых данных JS/TS",

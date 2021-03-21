@@ -10,7 +10,7 @@
 	"contents": {
 		"package": {
 			"add.browser.breakpoint": "添加浏览器断点",
-			"attach.node.process": "附加到 Node 进程(预览)",
+			"attach.node.process": "附加到 Node 进程",
 			"base.cascadeTerminateToConfigurations.label": "当终止此调试会话时，也将停止的调试会话的列表。",
 			"browser.address.description": "调试的浏览器正在侦听的 IP 地址或主机名。",
 			"browser.attach.port.description": "用于远程调试浏览器的端口，在启动浏览器时通过 `--remote-debugging-port` 指定。",
@@ -23,7 +23,7 @@
 			"browser.env.description": "浏览器的环境键/值对的可选字典。",
 			"browser.file.description": "要在浏览器中打开的本地 HTML 文件",
 			"browser.includeDefaultArgs.description": "启动中是否包括默认浏览器启动参数(以禁用可能使调试更加困难的功能)。",
-			"browser.inspectUri.description": "用于重写inspectUri的格式: 这是一个模板字符串，可插入{curlyBraces}中的键。\r\n可用的密钥包括: \r\n -“ url.*”是正在运行的应用程序的解析地址。例如，“ {url.port}”，“ {url.hostname}”\r\n -“port”是Chrome监听的调试端口。\r\n -`“browserInspectUri”是启动的浏览器上的检查器URI\r\n -“wsProtocol”是提示的websocket协议。如果原始URL为“https”，则设置为“wss”，否则为“ws”。",
+			"browser.inspectUri.description": "用于重写 inspectUri 的格式: 这是一个模板字符串，可插入 \"{curlyBraces}\" 中的键。可用的键包括:\r\n - \"url.*\" 是正在运行的应用程序的解析地址，例如 \"{url.port}\" 和 \"{url.hostname}\"\r\n - \"port\" 是 Chrome 正在侦听的调试端口。\r\n - \"browserInspectUri\" 是启动的浏览器上的检查器 URI\r\n - \"browserInspectUriPath\" 是启动的浏览器上的检查器 URI 的路径部分(例如 \"/devtools/browser/e9ec0098-306e-472a-8133-5e42488929c2\")\r\n - \"wsProtocol\" 是提示的 websocket 协议。如果原始 URL 为 \"https\"，则设置为 \"wss\"，否则为 \"ws\"。\r\n",
 			"browser.launch.port.description": "浏览器侦听的端口。默认值为“0”，这将导致浏览器通过管道进行调试，这通常更安全，除非需要从其他工具连接到浏览器，否则应选择该值。",
 			"browser.pathMapping.description": "将 URL/路径映射到本地文件夹，以将浏览器中的脚本解析为磁盘上的脚本",
 			"browser.perScriptSourcemaps.description": "是否使用包含源文件基本名称的唯一源映射单独加载脚本。处理大量小型脚本时，可以设置此项来优化源映射处理。如果设置为“自动”，将在可以检测已知用例时进行检测。",
@@ -47,7 +47,7 @@
 			"browser.webRoot.description": "此设置指定 Web 服务器根的工作区绝对路径。用于将 `/app.js` 等路径解析为磁盘上的文件。pathMapping 的速记方式为 \"/\"",
 			"chrome.attach.description": "附加到已处于调试模式的 Chrome 实例",
 			"chrome.attach.label": "Chrome: 附加",
-			"chrome.label": "Chrome (预览)",
+			"chrome.label": "Chrome",
 			"chrome.launch.description": "启动 Chrome 以调试 URL",
 			"chrome.launch.label": "Chrome: 启动",
 			"configuration.autoAttachMode": "配置在 \"#debug.node.autoAttach#\" 处于启用状态时自动附加和调试的进程。无论此设置如何，都始终附加到启动的带有 \"--inspect\" 标志的节点进程。",
@@ -60,30 +60,34 @@
 			"configuration.automaticallyTunnelRemoteServer": "调试远程 Web 应用时，配置是否自动将远程服务器通过隧道传输到本地计算机。",
 			"configuration.breakOnConditionalError": "当条件断点引发错误时是否停止。请注意: launch.json `type` 必须带有 \"pwa-\" 前缀才能使用它，例如 \"pwa-node\"。",
 			"configuration.debugByLinkOptions": "调试时从调试终端内部单击链接使用的选项。可设置为\"false\"以禁用此行为。",
+			"configuration.defaultRuntimeExecutables": "用于启动配置的默认 \"runtimeExecutable\" (如果未指定)。这可用于配置 Node.js 或浏览器安装项的自定义路径。",
 			"configuration.npmScriptLensLocation": "在 npm 脚本中应显示“运行”和“调试”代码的位置。 它可以在脚本部分的“全部”、脚本、脚本部分的“顶部”或“从不”上面。",
 			"configuration.pickAndAttachOptions": "通过 `Debug: Attach to Node.js Process` 命令调试进程时使用的默认选项",
+			"configuration.resourceRequestOptions": "在调试器中加载资源(如源映射)时可使用的请求选项。例如，如果你的源映射需要身份验证或使用自签名证书，则可能需要配置此设置。选项用于创建使用 [`got`](https://github.com/sindresorhus/got) 库的请求。\r\n\r\n可通过传递 `{ \"https\": { \"rejectUnauthorized\": false } }` 来实现禁用证书验证的常见情况。",
 			"configuration.suggestPrettyPrinting": "是否建议在单步执行时将看起来被压缩的 JavaScript 代码美观打印。",
 			"configuration.terminalOptions": "JavaScript 调试终端和 npm 脚本的默认启动选项。",
 			"configuration.unmapMissingSources": "配置是否会自动取消映射无法读取源文件的源映射文件。如果这是 false (默认)，系统会显示提示。",
 			"configuration.usePreview": "为 Node.js 和 Chrome 使用新的预览版 JavaScript 调试器。",
 			"createDiagnostics.label": "创建当前会话的诊断信息",
 			"customDescriptionGenerator.description": "自定义调试程序为对象(本地变量等)显示的文本说明。示例:\r\n      1. this.toString() // 将调用 toString 来打印所有对象\r\n      2. this.customDescription ? this.customDescription() : defaultValue // 如果未返回 defaultValue，则使用 customDescription 方法(若可用)\r\n      3. function (def) { return this.customDescription ? this.customDescription() : def } // 如果未返回 defaultValue，则使用 customDescription 方法(若可用)\r\n      ",
+			"customPropertiesGenerator.description": "自定义为调试程序中的对象显示的属性(本地变量等)。示例:\r\n    1. { ...this, extraProperty: '12345' } // 向所有对象添加 extraProperty 12345\r\n    2. this.customProperties ? this.customProperties() : this // 如果不使用此(默认属性)中的属性，请使用 customProperties 方法(若可用)\r\n    3. function () { return this.customProperties ? this.customProperties() : this } // 如果不返回默认属性，请使用 customDescription 方法(若可用)\r\n\r\n    已弃用: 这是此功能的临时实现，直到我们有时间按此处所示方法实现它为止: https://github.com/microsoft/vscode/issues/102181",
 			"debug.npm.edit": "编辑 package.json",
 			"debug.npm.noScripts": "在 package.json 中找不到 npm 脚本",
 			"debug.npm.noWorkspaceFolder": "需要打开工作区文件夹来调试 npm 脚本。",
 			"debug.npm.parseError": "无法读取 {0}: {1}",
-			"debug.npm.script": "调试 NPM 脚本",
+			"debug.npm.script": "调试 npm 脚本",
 			"debug.terminal.attach": "附加到 Node.js 终端进程",
 			"debug.terminal.label": "创建 JavaScript 调试终端",
 			"debug.terminal.program.description": "在启动的终端中运行命令。如果未提供命令，终端将在不启动程序的情况下打开。",
 			"debug.terminal.snippet.label": "在调试终端中运行 \"npm start\"",
 			"debug.terminal.toggleAuto": "切换终端 Node.js 自动附加",
-			"debug.terminal.welcome": "[JavaScript 调试终端](command:extension.pwa-node-debug.createDebuggerTerminal)\r\n\r\n可使用 JavaScript 调试终端调试在命令行上运行的 Node.js 进程。\r\n\r\n[调试 URL](command:extension.js-debug.debugLink)",
+			"debug.terminal.welcome": "[JavaScript 调试终端](command:extension.js-debug.createDebuggerTerminal)\r\n\r\n可使用 JavaScript 调试终端调试在命令行上运行的 Node.js 进程。",
+			"debug.terminal.welcomeWithLink": "[JavaScript 调试终端](command:extension.js-debug.createDebuggerTerminal)\r\n\r\n可使用 JavaScript 调试终端调试在命令行上运行的 Node.js 进程。\r\n\r\n[调试 URL](command:extension.js-debug.debugLink)",
 			"debugLink.label": "打开链接",
 			"edge.address.description": "调试 Web 视图时，Web 视图正在侦听的 IP 地址或主机名。如果未设置，则自动发现。",
 			"edge.attach.description": "附加到已在调试模式下的 Edge 实例",
 			"edge.attach.label": "Microsoft Edge: 附加",
-			"edge.label": "Microsoft Edge (预览)",
+			"edge.label": "Edge",
 			"edge.launch.description": "启动 Microsoft Edge 以调试 URL",
 			"edge.launch.label": "Microsoft Edge: 启动",
 			"edge.port.description": "调试 Web 视图时，Web 视图调试程序正在侦听的端口。如果未设置，则自动发现。",
@@ -91,7 +95,7 @@
 			"enableContentValidation.description": "切换是否要验证确定磁盘上的文件内容与运行时中加载的内容相匹配。这在各种情况下都很有用，在一些情况下还是必需操作，但是如果你具有脚本的服务器端转换，则可能会导致出现问题。",
 			"errors.timeout": "{0}: {1} 毫秒后超时",
 			"extension.description": "用于调试 Node.js 程序和 Chrome 的扩展。",
-			"extensionHost.label": "VS Code 扩展开发(预览)",
+			"extensionHost.label": "VS Code 扩展开发",
 			"extensionHost.launch.config.name": "启动扩展",
 			"extensionHost.launch.debugWebWorkerHost": "配置是否应尝试附加到 Web 辅助进程扩展主机。",
 			"extensionHost.launch.debugWebviews": "配置是否应尝试附加到已启动的 VS Code 实例中的 Web 视图。**请注意:** 要使其正常工作，当前需要设置 \"webview.experimental.useIframes\": true，并且此功能仅适用于桌面 VS Code。",
@@ -115,7 +119,8 @@
 			"node.attachSimplePort.description": "如果设置，则通过给定端口附加到进程。Node.js 程序通常不再需要该设置，而且它没法再调试子进程，但在使用 Deno 和 Docker 启动等更复杂的场景中，它可能很有用。如果设置为 0，则将选择随机端口，并自动向启动参数添加 --inspect-brk。",
 			"node.console.title": "Node 调试控制台",
 			"node.disableOptimisticBPs.description": "请勿在任何文件中设置断点，除非该文件已加载源映射。",
-			"node.label": "Node.js (预览)",
+			"node.killBehavior.description": "配置在停止会话时如何终止调试进程。可以是:\r\n\r\n- forceful (default): 强制关闭进程树。在 posix 上发送 SIGKILL，在 Windows 上发送 \"taskkill.exe /F\"。\r\n- polite: 正常关闭进程树。可能出现按此方式关闭后继续运行行为出错的进程的情况。在 posix 上发送 SIGTERM，在 Windows 上发送 \"taskkill.exe\" 但不带 \"/F\" (强制)标志。\r\n- 无: 将不终止。",
+			"node.label": "Node.js",
 			"node.launch.args.description": "传递给程序的命令行参数。",
 			"node.launch.autoAttachChildProcesses.description": "自动将调试器附加到新的子进程。",
 			"node.launch.config.name": "启动",
@@ -123,7 +128,7 @@
 			"node.launch.console.externalTerminal.description": "可通过用户设置来配置的外部终端",
 			"node.launch.console.integratedTerminal.description": "VS Code 的集成终端",
 			"node.launch.console.internalConsole.description": "VS Code 调试控制台(不支持从程序读取输入)",
-			"node.launch.cwd.description": "正在调试的程序的工作目录的绝对路径。",
+			"node.launch.cwd.description": "正在调试程序工作目录的绝对路径。如果已设置 localRoot，则 cwd 将与该值匹配，否则它将回退到 workspaceFolder",
 			"node.launch.env.description": "传递到程序的环境变量。`null` 值从环境中删除该变量。",
 			"node.launch.envFile.description": "包含环境变量定义的文件的绝对路径。",
 			"node.launch.logging": "日志记录配置",
@@ -161,7 +166,7 @@
 			"node.snippet.nodemon.description": "使用 nodemon 以在源更改时重新启动调试会话",
 			"node.snippet.nodemon.label": "Node.js: Nodemon 安装程序",
 			"node.snippet.npm.description": "通过 npm \"debug\" 脚本启动 node 程序",
-			"node.snippet.npm.label": "Node.js: 通过 NPM 启动",
+			"node.snippet.npm.label": "Node.js: 通过 npm 启动",
 			"node.snippet.remoteattach.description": "附加到远程节点计划的调试端口",
 			"node.snippet.remoteattach.label": "Node.js: 附加到远程程序",
 			"node.snippet.yo.description": "调试 yeoman 生成器 (通过在项目文件夹中运行 \"npm link\" 进行安装)",
@@ -229,9 +234,8 @@
 		},
 		"/src/adapter/debugAdapter": {
 			"breakpoint.caughtExceptions": "捕获的异常",
+			"breakpoint.caughtExceptions.description": "出现任何引发错误时中断，即使这些错误稍后才被捕获也是如此。",
 			"breakpoint.uncaughtExceptions": "未捕获的异常",
-			"`errors.setExceptionBreakpoints.async.failed`": "未能配置要因此暂停的异常，原因是: {0}",
-			"errors.unknown": "未知错误",
 			"error.sourceNotFound": "未找到源",
 			"error.sourceContentDidFail": "无法检索源内容",
 			"error.variableNotFound": "找不到变量",
@@ -287,6 +291,7 @@
 			"error.invalidExpression": "无效表达式",
 			"error.setVariableDidFail": "无法设置变量值",
 			"error.unknown": "未知错误",
+			"error.failedToCustomizeObjectProperties": "属性自定义失败",
 			"error.customValueDescriptionGeneratorFailed": "{0} (无法描述: {1})"
 		},
 		"/src/dap/errors": {
@@ -331,9 +336,6 @@
 		"/src/ui/debugTerminalUI": {
 			"terminal.cwdpick": "选择当前工作目录新建终端"
 		},
-		"/src/ui/diagnosticsUI": {
-			"createDiagnostics.copied": "诊断报告的路径已复制到剪贴板"
-		},
 		"/src/ui/disableSourceMapUI": {
 			"always": "始终",
 			"yes": "是",
@@ -348,9 +350,6 @@
 			"longPredictionWarning.open": "打开 launch.json",
 			"longPredictionWarning.disable": "不再显示",
 			"longPredictionWarning.noFolder": "未打开工作区文件夹。"
-		},
-		"/src/ui/npmScriptLens": {
-			"codelens.debug": "{0} 调试"
 		},
 		"/src/ui/prettyPrint": {
 			"yes": "是",
@@ -392,6 +391,8 @@
 			"node.attach.restart.message": "已断开与调试对象的连接，将在 {0} 毫秒后重新连接\r\n"
 		},
 		"/src/targets/node/nodeBinaryProvider": {
+			"yes": "是",
+			"outOfDate": "{0} 仍要尝试调试吗?",
 			"runtime.node.notfound.enoent": "路径不存在",
 			"runtime.node.notfound.spawnErr": "获取版本时出错: {0}"
 		},

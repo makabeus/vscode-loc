@@ -11,7 +11,6 @@
 		"package": {
 			"description": "Emmet-Unterstützung für VS Code",
 			"command.wrapWithAbbreviation": "Mit Abkürzung umschließen",
-			"command.wrapIndividualLinesWithAbbreviation": "Einzelne Zeilen mit Abkürzung umschließen",
 			"command.removeTag": "Tag entfernen",
 			"command.updateTag": "Tag aktualisieren",
 			"command.matchTag": "Gehe zu übereinstimmendem Paar",
@@ -33,6 +32,7 @@
 			"command.decrementNumberByOneTenth": "Um 0,1 verringern",
 			"command.incrementNumberByTen": "Um 10 erhöhen",
 			"command.decrementNumberByTen": "Um 10 verringern",
+			"command.showEmmetCommands": "Emmet-Befehle anzeigen",
 			"emmetSyntaxProfiles": "Definieren Sie das Profil für die angegebene Syntax, oder verwenden Sie Ihr eigenes Profil mit bestimmten Regeln.",
 			"emmetExclude": "Ein Array von Sprachen, in dem Emmet-Abkürzungen nicht erweitert werden sollten.",
 			"emmetExtensionsPath": "Pfad zu einem Ordner mit Emmet-Profilen und -Ausschnitten.",
@@ -64,7 +64,12 @@
 			"emmetPreferencesCssOProperties": "Durch Trennzeichen getrennte CSS-Eigenschaften, die das \"o\"-Herstellerpräfix erhalten, wenn sie in einer Emmet-Abkürzung verwendet werden, die mit \"-\" beginnt. Legen Sie eine leere Zeichenfolge fest, um das \"o\"-Präfix immer zu vermeiden.",
 			"emmetPreferencesCssMsProperties": "Durch Trennzeichen getrennte CSS-Eigenschaften, die das \"ms\"-Herstellerpräfix erhalten, wenn sie in einer Emmet-Abkürzung verwendet werden, die mit \"-\" beginnt. Legen Sie eine leere Zeichenfolge fest, um das \"ms\"-Präfix immer zu vermeiden.",
 			"emmetPreferencesCssFuzzySearchMinScore": "Das Mindestergebnis (zwischen 0 und 1), das die Abkürzung mit Fuzzyübereinstimmung erreichen muss. Niedrigere Werte führen zu vielen falsch positiven Übereinstimmungen, höhere Werte verringern unter Umständen die möglichen Übereinstimmungen.",
-			"emmetOptimizeStylesheetParsing": "Bei FALSE wird die gesamte Datei analysiert, um zu bestimmten, ob das Erweitern von Emmet-Abkürzungen an der aktuellen Position möglich ist. Bei TRUE wird nur der Inhalt vor und nach der aktuellen Position in CSS-, SCSS-, und LESS-Dateien analysiert."
+			"emmetOptimizeStylesheetParsing": "Bei FALSE wird die gesamte Datei analysiert, um zu bestimmten, ob das Erweitern von Emmet-Abkürzungen an der aktuellen Position möglich ist. Bei TRUE wird nur der Inhalt vor und nach der aktuellen Position in CSS-, SCSS-, und LESS-Dateien analysiert.",
+			"emmetPreferencesOutputReverseAttributes": "Bei TRUE werden beim Auflösen von Ausschnitten die Richtungen von Attributzusammenführungen umgekehrt.",
+			"emmetPreferencesCssColorShort": "Bei TRUE werden Farbwerte wie #f auf #fff anstelle von #ffffff erweitert."
+		},
+		"dist\\node/abbreviationActions": {
+			"wrapWithAbbreviationPrompt": "Abkürzung eingeben"
 		}
 	}
 }

@@ -18,6 +18,7 @@
 			"typescript.tsdk.desc": "Specifica il percorso della cartella dei file tsserver e lib*.d.ts in un'installazione di TypeScript da usare per IntelliSense, ad esempio: `./node_modules/typescript/lib`.\r\n\r\n- Quando viene specificata come impostazione utente, la versione di TypeScript di `typescript.tsdk` sostituisce automaticamente la versione predefinita.\r\n- Quando viene specificata come impostazione dell'area di lavoro, `typescript.tsdk` consente di passare alla versione area di lavoro di TypeScript per IntelliSense con il comando `TypeScript: Seleziona la versione di TypeScript`.\r\n\r\nPer altri dettagli sulla gestione delle versioni di TypeScript, vedere la [documentazione di TypeScript](https://code.visualstudio.com/docs/typescript/typescript-compiling#_using-newer-typescript-versions).",
 			"typescript.disableAutomaticTypeAcquisition": "Disabilita l'acquisizione automatica del tipo. L'acquisizione automatica del tipo consente di acquisire pacchetti `@types` da npm per migliorare IntelliSense per le librerie esterne.",
 			"typescript.enablePromptUseWorkspaceTsdk": "Consente di chiedere agli utenti se usare la versione di TypeScript configurata nell'area di lavoro per IntelliSense.",
+			"typescript.tsserver.enableTracing": "Abilita la traccia delle prestazioni del server TypeScript in una directory. Questi file di traccia possono essere usati per diagnosticare problemi di prestazioni del server TypeScript. Il log può contenere percorsi di file, codice sorgente e altre informazioni del progetto potenzialmente riservate.",
 			"typescript.tsserver.log": "Abilita la registrazione del server TypeScript in un file. Questo log può essere usato per diagnosticare problemi del server TypeScript. Il log può contenere percorsi di file, codice sorgente e altre informazioni del progetto potenzialmente riservate.",
 			"typescript.tsserver.pluginPaths": "Percorsi aggiuntivi per individuare plug-in del servizio di linguaggio TypeScript.",
 			"typescript.tsserver.pluginPaths.item": "Percorso assoluto o relativo. Il percorso relativo verrà risolto in base alle cartelle dell'area di lavoro.",
@@ -56,7 +57,6 @@
 			"typescript.restartTsServer": "Riavvia server TS",
 			"typescript.selectTypeScriptVersion.title": "Seleziona la versione di TypeScript...",
 			"typescript.reportStyleChecksAsWarnings": "Segnala i controlli di stile come avvisi.",
-			"javascript.implicitProjectConfig.checkJs": "Abilita/disabilita il controllo semantico di file JavaScript. Eventuali file jsconfig.json o tsconfig.json esistenti sovrascrivono questa impostazione.",
 			"typescript.npm": "Specifica il percorso dell'eseguibile npm usato per l'acquisizione automatica del tipo.",
 			"typescript.check.npmIsInstalled": "Controlla se NPM è installato per l'acquisizione automatica delle definizioni di tipi",
 			"configuration.suggest.names": "Abilita/disabilita l'inclusione di nomi univoci dal file nei suggerimenti JavaScript. Tenere presente che i suggerimenti per i nomi sono sempre disabilitati nel codice JavaScript che viene controllato semanticamente con `@ts-check` o `checkJs'.",
@@ -72,16 +72,23 @@
 			"configuration.tsserver.maxTsServerMemory": "Imposta la quantità massima di memoria (in MB) da assegnare al processo server TypeScript",
 			"configuration.tsserver.experimental.enableProjectDiagnostics": "(Sperimentale) Consente la segnalazione degli errori a livello di progetto.",
 			"typescript.locale": "Consente di definire le impostazioni locali usate per segnalare errori JavaScript e TypeScript. Con l'impostazione predefinita `null` vengono usate le impostazioni locali di VS Code.",
-			"javascript.implicitProjectConfig.experimentalDecorators": "Abilita/Disabilita gli elementi `experimentalDecorators` per file JavaScript che non fanno parte di un progetto. Eventuali file jsconfig.json o tsconfig.json esistenti sovrascrivono questa impostazione.",
+			"configuration.implicitProjectConfig.checkJs": "Abilita/Disabilita il controllo semantico di file JavaScript. Eventuali file `jsconfig.json` o `tsconfig.json` esistenti sovrascrivono questa impostazione.",
+			"configuration.javascript.checkJs.checkJs.deprecation": "Questa impostazione è stata deprecata e sostituita da `js/ts.implicitProjectConfig.checkJs`.",
+			"configuration.implicitProjectConfig.experimentalDecorators": "Abilita/Disabilita gli elementi `experimentalDecorators` in file JavaScript che non fanno parte di un progetto. Eventuali file `jsconfig.json` o `tsconfig.json` esistenti sovrascrivono questa impostazione.",
+			"configuration.javascript.checkJs.experimentalDecorators.deprecation": "Questa impostazione è stata deprecata e sostituita da `js/ts.implicitProjectConfig.experimentalDecorators`.",
+			"configuration.implicitProjectConfig.strictNullChecks": "Abilita/Disabilita i [controlli strict Null](https://www.typescriptlang.org/tsconfig#strictNullChecks) in file JavaScript e TypeScript che non fanno parte di un progetto. Eventuali file `jsconfig.json` o `tsconfig.json` esistenti sovrascrivono questa impostazione.",
+			"configuration.implicitProjectConfig.strictFunctionTypes": "Abilita/Disabilita i [tipi funzione strict](https://www.typescriptlang.org/tsconfig#strictFunctionTypes) in file JavaScript e TypeScript che non fanno parte di un progetto. Eventuali file `jsconfig.json` o `tsconfig.json` esistenti sovrascrivono questa impostazione.",
+			"configuration.suggest.jsdoc.generateReturns": "Abilita/Disabilita la generazione di annotazioni `@return` per modelli JSDoc. Richiede l'uso di TypeScript 4.2 e versioni successive nell'area di lavoro.",
 			"configuration.suggest.autoImports": "Abilita/Disabilita i suggerimenti per le istruzioni import automatiche.",
 			"taskDefinition.tsconfig.description": "File tsconfig che definisce la compilazione TS.",
 			"javascript.suggestionActions.enabled": "Abilita/Disabilita la diagnostica dei suggerimenti per i file JavaScript nell'editor.",
 			"typescript.suggestionActions.enabled": "Abilita/Disabilita la diagnostica dei suggerimenti per i file TypeScript nell'editor.",
 			"typescript.preferences.quoteStyle": "Stile di virgolette preferito da usare per le correzioni rapide. È possibile scegliere tra `single`, `double` oppure `auto` per derivare il tipo di virgolette dalle istruzioni import.",
 			"typescript.preferences.importModuleSpecifier": "Stile di percorso preferito per le istruzioni import automatiche.",
-			"typescript.preferences.importModuleSpecifier.auto": "Seleziona automaticamente lo stile del percorso delle istruzioni import. È preferibile usare un'istruzione import relativa se è configurato `baseUrl` e il percorso relativo contiene meno segmenti dell'istruzione import non relativa.",
-			"typescript.preferences.importModuleSpecifier.relative": "Relativo al percorso del file.",
-			"typescript.preferences.importModuleSpecifier.nonRelative": "Basato sull'elemento 'baseUrl' configurato in 'jsconfig.json' / 'tsconfig.json'.",
+			"typescript.preferences.importModuleSpecifier.shortest": "Preferisce un'importazione non relativa solo se ne è disponibile solo una con un numero di segmenti di tracciato minore rispetto a un'importazione relativa.",
+			"typescript.preferences.importModuleSpecifier.relative": "Preferisce un percorso relativo per la posizione del file importato.",
+			"typescript.preferences.importModuleSpecifier.nonRelative": "Preferisce un'importazione non relativa basata sull'elemento `baseUrl` o `paths` configurato nel file `jsconfig.json`/`tsconfig.json`.",
+			"typescript.preferences.importModuleSpecifier.projectRelative": "Preferisce un'importazione non relativa solo se il percorso di importazione relativo lascia la directory del progetto o del pacchetto. Richiede l'uso di TypeScript 4.2 o versione successiva nell'area di lavoro.",
 			"typescript.preferences.importModuleSpecifierEnding": "Terminazione di percorso preferita per le istruzioni import automatiche.",
 			"typescript.preferences.importModuleSpecifierEnding.auto": "Usa le impostazioni del progetto per selezionare un'impostazione predefinita.",
 			"typescript.preferences.importModuleSpecifierEnding.minimal": "Abbrevia `./component/index.js` in `./component`.",
@@ -101,12 +108,14 @@
 			"configuration.suggest.completeJSDocs": "Abilita/disabilita il suggerimento per il completamento dei commenti JSDoc.",
 			"configuration.tsserver.watchOptions": "Configura le strategie di controllo per tenere traccia dei file e delle directory. Richiede l'uso di TypeScript 3.8 e versioni successive nell'area di lavoro.",
 			"configuration.tsserver.watchOptions.watchFile": "Strategia per il controllo dei singoli file.",
+			"configuration.tsserver.watchOptions.watchFile.fixedChunkSizePolling": "Polls files in chunks at regular interval. Requires using TypeScript 4.3+ in the workspace.",
 			"configuration.tsserver.watchOptions.watchFile.fixedPollingInterval": "Controlla ogni file più volte al secondo per verificare la presenza di modifiche a un intervallo fisso.",
 			"configuration.tsserver.watchOptions.watchFile.priorityPollingInterval": "Controlla ogni file più volte al secondo per verificare la presenza di modifiche, ma usa l'euristica per controllare alcuni tipi di file meno frequentemente di altri.",
 			"configuration.tsserver.watchOptions.watchFile.dynamicPriorityPolling": "Usa una coda dinamica in cui i file modificati meno frequentemente verranno controllati meno spesso.",
 			"configuration.tsserver.watchOptions.watchFile.useFsEvents": "Prova a usare gli eventi nativi del sistema operativo/file system per le modifiche apportate ai file.",
 			"configuration.tsserver.watchOptions.watchFile.useFsEventsOnParentDirectory": "Prova a usare gli eventi nativi del sistema operativo/file system per ascoltare le modifiche apportate alle directory contenitore di un file. Con questa opzione vengono usati meno controlli file, ma i risultati potrebbero essere meno accurati.",
 			"configuration.tsserver.watchOptions.watchDirectory": "Strategia di controllo di interi alberi di directory in sistemi in cui manca la funzionalità di controllo file ricorsivi.",
+			"configuration.tsserver.watchOptions.watchDirectory.fixedChunkSizePolling": "Polls directories in chunks at regular interval. Requires using TypeScript 4.3+ in the workspace.",
 			"configuration.tsserver.watchOptions.watchDirectory.fixedPollingInterval": "Controlla ogni directory più volte al secondo per verificare la presenza di modifiche a un intervallo fisso.",
 			"configuration.tsserver.watchOptions.watchDirectory.dynamicPriorityPolling": "Usa una coda dinamica in cui le directory modificate meno frequentemente verranno controllate meno spesso.",
 			"configuration.tsserver.watchOptions.watchDirectory.useFsEvents": "Prova a usare gli eventi nativi del sistema operativo/file system per le modifiche apportate alle directory.",
@@ -139,7 +148,8 @@
 			"codeActions.refactor.rewrite.parameters.toDestructured.title": "Convertire i parametri nell'oggetto destrutturato",
 			"codeActions.refactor.rewrite.property.generateAccessors.title": "Genera funzioni di accesso",
 			"codeActions.refactor.rewrite.property.generateAccessors.description": "Generare le funzioni di accesso 'get' e 'set'",
-			"codeActions.source.organizeImports.title": "Organizza import"
+			"codeActions.source.organizeImports.title": "Organizza import",
+			"typescript.findAllFileReferences": "Trova riferimenti a file"
 		},
 		"dist/utils/api": {
 			"invalidVersion": "versione non valida"
@@ -156,11 +166,19 @@
 		"dist/languageFeatures/codeLens/baseCodeLensProvider": {
 			"referenceErrorLabel": "Non è stato possibile determinare i riferimenti"
 		},
+		"dist/languageFeatures/codeLens/implementationsCodeLens": {
+			"oneImplementationLabel": "1 implementazione",
+			"manyImplementationLabel": "{0} implementazioni"
+		},
+		"dist/languageFeatures/codeLens/referencesCodeLens": {
+			"oneReferenceLabel": "1 riferimento",
+			"manyReferenceLabel": "{0} riferimenti"
+		},
 		"dist/languageFeatures/completions": {
+			"autoImportLabel": "Importazione automatica da {0}",
 			"selectCodeAction": "Selezionare l'azione codice da applicare",
 			"acquiringTypingsLabel": "Acquisizione dei file typings...",
-			"acquiringTypingsDetail": "Acquisizione delle definizioni dei file typings per IntelliSense.",
-			"autoImportLabel": "Importazione automatica da {0}"
+			"acquiringTypingsDetail": "Acquisizione delle definizioni dei file typings per IntelliSense."
 		},
 		"dist/languageFeatures/directiveCommentCompletions": {
 			"ts-check": "Attiva il controllo semantico in un file JavaScript. Deve essere all'inizio del file.",
@@ -168,9 +186,17 @@
 			"ts-ignore": "Elimina errori di @ts-check sulla riga successiva di un file.",
 			"ts-expect-error": "Elimina gli errori di @ts-check sulla riga successiva di un file. Presuppone che ne esista almeno uno."
 		},
-		"dist/languageFeatures/codeLens/implementationsCodeLens": {
-			"oneImplementationLabel": "1 implementazione",
-			"manyImplementationLabel": "{0} implementazioni"
+		"dist/languageFeatures/fileReferences": {
+			"error.unsupportedVersion": "La ricerca dei riferimenti a file non è riuscita. È richiesto TypeScript 4.2 o versione successiva.",
+			"error.noResource": "La ricerca dei riferimenti a file non è riuscita. Non è stata specificata alcuna risorsa.",
+			"error.unsupportedLanguage": "La ricerca dei riferimenti a file non è riuscita. Il tipo di file non è supportato.",
+			"error.unknownFile": "La ricerca dei riferimenti a file non è riuscita. Il tipo di file è sconosciuto.",
+			"progress.title": "Ricerca di riferimenti a file"
+		},
+		"dist/languageFeatures/fixAll": {
+			"autoFix.label": "Correggi tutto",
+			"autoFix.unused.label": "Rimuovi tutto il codice inutilizzato",
+			"autoFix.missingImports.label": "Aggiungi tutte le importazioni mancanti"
 		},
 		"dist/languageFeatures/jsDocCompletions": {
 			"typescript.jsDocCompletionItem.documentation": "Commento JSDoc"
@@ -181,11 +207,6 @@
 		"dist/languageFeatures/quickFix": {
 			"fixAllInFileLabel": "{0} (Correggi tutti nel file)"
 		},
-		"dist/languageFeatures/fixAll": {
-			"autoFix.label": "Correggi tutto",
-			"autoFix.unused.label": "Rimuovi tutto il codice inutilizzato",
-			"autoFix.missingImports.label": "Aggiungi tutte le importazioni mancanti"
-		},
 		"dist/languageFeatures/refactor": {
 			"refactoringFailed": "Non è stato possibile applicare il refactoring",
 			"extractConstant.disabled.title": "Estrai in costante",
@@ -194,16 +215,13 @@
 			"extractFunction.disabled.reason": "Non è possibile estrarre la selezione corrente",
 			"refactor.documentation.title": "Altre informazioni sui refactoring JS/TS"
 		},
-		"dist/languageFeatures/codeLens/referencesCodeLens": {
-			"oneReferenceLabel": "1 riferimento",
-			"manyReferenceLabel": "{0} riferimenti"
-		},
 		"dist/languageFeatures/rename": {
 			"fileRenameFail": "Si è verificato un errore durante la ridenominazione del file"
 		},
 		"dist/tsServer/versionStatus": {
 			"projectQuickPick.placeholder": "Informazioni sul progetto TypeScript",
 			"projectQuickPick.version.label": "Seleziona la versione di TypeScript...",
+			"projectQuickPick.version.description": "[corrente = {0}]",
 			"projectQuickPick.project.create": "Crea tsconfig",
 			"projectQuickPick.project.create.description": "Questo file non fa attualmente parte di un progetto tsconfig/jsconfig",
 			"projectQuickPick.version.goProjectConfig": "Apri tsconfig",
@@ -235,18 +253,6 @@
 		},
 		"dist/utils/logger": {
 			"channelName": "TypeScript"
-		},
-		"dist/utils/typingsStatus": {
-			"installingPackages": "Recupero dei dati per ottimizzare IntelliSense in TypeScript",
-			"typesInstallerInitializationFailed.doNotCheckAgain": "Non visualizzare più questo messaggio",
-			"typesInstallerInitializationFailed.title": "Non è stato possibile installare i file di definizione tipi per le funzionalità del linguaggio JavaScript. Verificare che npm sia installato e o configurare 'typescript.npm' nelle impostazioni utente. Fare clic [qui]({0}) per saperne di più."
-		},
-		"dist/utils/largeProjectStatus": {
-			"statusExclude": "TypeScript: Configura esclusioni",
-			"hintExclude": "Per abilitare le funzionalità del linguaggio JavaScript/TypeScript a livello di progetto, escludere le cartelle che contengono molti file, come {0}",
-			"hintExclude.generic": "Per abilitare le funzionalità del linguaggio JavaScript/TypeScript a livello di progetto, escludere le cartelle di grandi dimensioni che contengono file di origine su cui non si lavora.",
-			"large.label": "Configura esclusioni",
-			"hintExclude.tooltip": "Per abilitare le funzionalità del linguaggio JavaScript/TypeScript a livello di progetto, escludere le cartelle di grandi dimensioni che contengono file di origine su cui non si lavora."
 		},
 		"dist/languageFeatures/updatePathsOnRename": {
 			"renameProgress.title": "Verifica della disponibilità di aggiornamenti per le istruzioni import JS/TS",

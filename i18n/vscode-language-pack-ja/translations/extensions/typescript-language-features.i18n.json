@@ -18,6 +18,7 @@
 			"typescript.tsdk.desc": "IntelliSense に使用する、TypeScript インストールの下にある tsserver および lib*.d.ts ファイルのフォルダー パスを指定します。例: './node_modules/typescript/lib'。\r\n\r\n- ユーザー設定として指定した場合は、'typescript.tsdk' からの TypeScript バージョンによって組み込みの TypeScript バージョンが自動的に置き換えられます。\r\n- ワークスペース設定として指定した場合は、'typescript.tsdk' で 'TypeScript: Select TypeScript version' コマンドを使用することによって、IntelliSense のためにそのワークスペース バージョンの TypeScript を使用するように切り替えることができます。\r\n\r\nTypeScript バージョンの管理について詳しくは、[TypeScript のドキュメント](https://code.visualstudio.com/docs/typescript/typescript-compiling#_using-newer-typescript-versions) をご覧ください。",
 			"typescript.disableAutomaticTypeAcquisition": "型の自動取得を無効にします。型の自動取得は、外部ライブラリの Intelliense を向上させるために npm から `@types` パッケージを取得します。",
 			"typescript.enablePromptUseWorkspaceTsdk": "ワークスペースで Intellisense 用に構成されている TypeScript バージョンを使用することについてユーザーへの確認を有効にします。",
+			"typescript.tsserver.enableTracing": "ディレクトリへの TS サーバーのパフォーマンスのトレースを有効にします。これらのトレース ファイルは TS サーバーのパフォーマンスの問題を診断するために使用できます。ログには、プロジェクトのファイル パス、ソース コード、その他の潜在的に機密性の高い情報が含まれている場合があります。",
 			"typescript.tsserver.log": "ファイルへの TS サーバーのログを有効にします。このログは TS サーバーの問題を診断するために使用できます。ログには、プロジェクトのファイルパス、ソースコード、その他の潜在的に機密性の高い情報が含まれている場合があります。",
 			"typescript.tsserver.pluginPaths": "TypeScript 言語サービス プラグインを検出する追加のパス。",
 			"typescript.tsserver.pluginPaths.item": "絶対または相対パスのいずれか。相対パスはワークスペース フォルダーに対して解決されます。",
@@ -56,7 +57,6 @@
 			"typescript.restartTsServer": "TS サーバーを再起動",
 			"typescript.selectTypeScriptVersion.title": "TypeScript のバージョンを選択...",
 			"typescript.reportStyleChecksAsWarnings": "スタイル チェックを警告として報告します。",
-			"javascript.implicitProjectConfig.checkJs": "JavaScript ファイルのセマンティック チェックを有効または無効にします。既存の jsconfig.json または tsconfig.json ファイルによってこの設定がオーバーライドされます。",
 			"typescript.npm": "種類の自動的な取得に使用される npm 実行可能ファイルへのパスを指定します。",
 			"typescript.check.npmIsInstalled": "型定義の自動取得に NPM がインストールされているかどうかを確認します。",
 			"configuration.suggest.names": "JavaScript の候補のファイルから一意の名前を含めることを有効または無効にします。名前の候補は、`@ts-check` または `checkJs` を使用して意味的にチェックされる JavaScript コードでは常に無効であることに注意してください。",
@@ -72,16 +72,23 @@
 			"configuration.tsserver.maxTsServerMemory": "TypeScript サーバー プロセスに割り当てるメモリの最大量 (MB) を設定する",
 			"configuration.tsserver.experimental.enableProjectDiagnostics": "(試験的) プロジェクト全体のエラー報告を有効にします。",
 			"typescript.locale": "JavaScript と TypeScript のエラーを報告するために使用するロケールを設定します。既定値の 'null' では VS Code のロケールを使用します。",
-			"javascript.implicitProjectConfig.experimentalDecorators": "プロジェクト外の JavaScript ファイルの 'experimentalDecorators' を有効または無効にします。既存の jsconfig.json または tsconfig.json ファイルによってこの設定がオーバーライドされます。",
+			"configuration.implicitProjectConfig.checkJs": "JavaScript ファイルのセマンティック チェックを有効または無効にします。既存の 'jsconfig.json' または 'tsconfig.json' ファイルによってこの設定がオーバーライドされます。",
+			"configuration.javascript.checkJs.checkJs.deprecation": "この設定は、`js/ts.implicitProjectConfig.checkJs` を優先して非推奨になりました。",
+			"configuration.implicitProjectConfig.experimentalDecorators": "プロジェクト外の JavaScript ファイルの 'experimentalDecorators' を有効または無効にします。既存の 'jsconfig.json' または 'tsconfig.json' ファイルによってこの設定がオーバーライドされます。",
+			"configuration.javascript.checkJs.experimentalDecorators.deprecation": "この設定は、`js/ts.implicitProjectConfig.experimentalDecorators` を優先して非推奨になりました。",
+			"configuration.implicitProjectConfig.strictNullChecks": "プロジェクト外の JavaScript および TypeScript ファイルの [厳密な null チェック](https://www.typescriptlang.org/tsconfig#strictNullChecks) を有効または無効にします。既存の 'jsconfig.json' または 'tsconfig.json' ファイルによってこの設定がオーバーライドされます。",
+			"configuration.implicitProjectConfig.strictFunctionTypes": "プロジェクト外の JavaScript および TypeScript ファイルの [厳密な関数の型](https://www.typescriptlang.org/tsconfig#strictFunctionTypes) を有効または無効にします。既存の 'jsconfig.json' または 'tsconfig.json' ファイルによってこの設定がオーバーライドされます。",
+			"configuration.suggest.jsdoc.generateReturns": "JSDoc テンプレートの '@return' 注釈の生成を有効または無効にします。ワークスペースで TypeScript 4.2+ を使用する必要があります。",
 			"configuration.suggest.autoImports": "自動インポートの提案を有効または無効にします。",
 			"taskDefinition.tsconfig.description": "TS ビルドを定義する tsconfig ファイル。",
 			"javascript.suggestionActions.enabled": "エディター内で JavaScript ファイルの診断の提案を有効または無効にします。",
 			"typescript.suggestionActions.enabled": "エディター内で TypeScript ファイルの診断の提案を有効または無効にします。",
 			"typescript.preferences.quoteStyle": "クイック修正に使用するのに好ましい引用符のスタイル: 'single' 引用符、'double' 引用符、既存のインポートから引用符の種類を推測する 'auto'。",
 			"typescript.preferences.importModuleSpecifier": "自動 import の優先パス スタイル。",
-			"typescript.preferences.importModuleSpecifier.auto": "インポート パス スタイルを自動的に選択します。 `baseUrl` が構成されている場合、相対インポートが優先され、相対パスは非相対インポートよりセグメントが少ないです。",
-			"typescript.preferences.importModuleSpecifier.relative": "ファイルの場所を基準にします。",
-			"typescript.preferences.importModuleSpecifier.nonRelative": "`jsconfig.json` / `tsconfig.json` で構成されている `baseUrl` に基づきます。",
+			"typescript.preferences.importModuleSpecifier.shortest": "相対インポートよりもパス セグメント数が少なくなる場合にのみ、非相対インポートを優先します。",
+			"typescript.preferences.importModuleSpecifier.relative": "インポートされたファイルの場所への相対パスを優先します。",
+			"typescript.preferences.importModuleSpecifier.nonRelative": "`jsconfig.json` または `tsconfig.json` に構成されている `baseUrl` または `paths` に基づいて非相対インポートを優先します。",
+			"typescript.preferences.importModuleSpecifier.projectRelative": "相対インポート パスでパッケージまたはプロジェクト ディレクトリが提供される場合にのみ、非相対インポートを優先します。ワークスペースで TypeScript 4.2+ を使用する必要があります。",
 			"typescript.preferences.importModuleSpecifierEnding": "自動インポートの優先パスの末尾。",
 			"typescript.preferences.importModuleSpecifierEnding.auto": "プロジェクト設定を使用してデフォルトを選択します。",
 			"typescript.preferences.importModuleSpecifierEnding.minimal": "'./component/index.js' を './component' に短縮します。",
@@ -101,12 +108,14 @@
 			"configuration.suggest.completeJSDocs": "JSDoc のコメントを完成させるための提案を有効/無効にします。",
 			"configuration.tsserver.watchOptions": "ファイルとディレクトリを追跡するために使用する監視方法を構成します。ワークスペースで TypeScript 3.8 以降を使用する必要があります。",
 			"configuration.tsserver.watchOptions.watchFile": "個々のファイルを監視するための方法。",
+			"configuration.tsserver.watchOptions.watchFile.fixedChunkSizePolling": "Polls files in chunks at regular interval. Requires using TypeScript 4.3+ in the workspace.",
 			"configuration.tsserver.watchOptions.watchFile.fixedPollingInterval": "すべてのファイルで、一定の間隔で 1 秒に数回変更がないかを確認します。",
 			"configuration.tsserver.watchOptions.watchFile.priorityPollingInterval": "すべてのファイルで 1 秒間に数回変更を確認しますが、ヒューリスティックを使用して、特定の種類のファイルを他のファイルよりも少ない頻繁で確認することができます。",
 			"configuration.tsserver.watchOptions.watchFile.dynamicPriorityPolling": "変更頻度の低いファイルの確認頻度が低い場合は、動的キューを使用します。",
 			"configuration.tsserver.watchOptions.watchFile.useFsEvents": "ファイルの変更にオペレーティング システムまたはファイル システムのネイティブ イベントを使用しようとしています。",
 			"configuration.tsserver.watchOptions.watchFile.useFsEventsOnParentDirectory": "オペレーティング システムまたはファイル システムのネイティブ イベントを使用して、ディレクトリを含んでいるファイルに対する変更をリッスンします。使用するファイル ウォッチャーの数を減らすことができますが、正確性が低くなります。",
 			"configuration.tsserver.watchOptions.watchDirectory": "再帰的なファイル監視機能を持たないシステムでディレクトリ ツリー全体を監視するための方法。",
+			"configuration.tsserver.watchOptions.watchDirectory.fixedChunkSizePolling": "Polls directories in chunks at regular interval. Requires using TypeScript 4.3+ in the workspace.",
 			"configuration.tsserver.watchOptions.watchDirectory.fixedPollingInterval": "すべてのディレクトリで、一定の間隔で 1 秒間に数回、変更を確認します。",
 			"configuration.tsserver.watchOptions.watchDirectory.dynamicPriorityPolling": "変更頻度の少ないディレクトリの確認頻度が少ない動的キューを使用します。",
 			"configuration.tsserver.watchOptions.watchDirectory.useFsEvents": "ディレクトリの変更にオペレーティング システムまたはファイル システムのネイティブ イベントを使用します。",
@@ -139,7 +148,8 @@
 			"codeActions.refactor.rewrite.parameters.toDestructured.title": "パラメーターを非構造化オブジェクトに変換する",
 			"codeActions.refactor.rewrite.property.generateAccessors.title": "アクセサーを生成する",
 			"codeActions.refactor.rewrite.property.generateAccessors.description": "'get' および 'set' アクセサーの生成",
-			"codeActions.source.organizeImports.title": "インポートを整理"
+			"codeActions.source.organizeImports.title": "インポートを整理",
+			"typescript.findAllFileReferences": "ファイル参照の検索"
 		},
 		"dist/utils/api": {
 			"invalidVersion": "無効なバージョン"
@@ -147,8 +157,8 @@
 		"dist/utils/tsconfig": {
 			"typescript.configureTsconfigQuickPick": "tsconfig.json を構成する",
 			"typescript.configureJsconfigQuickPick": "jsconfig.json を構成する",
-			"typescript.noTypeScriptProjectConfig": "ファイルは TypeScript プロジェクトの一部ではありません。詳細情報は [こちら]({1}) をクリックしてください。",
-			"typescript.noJavaScriptProjectConfig": "ファイルは JavaScript プロジェクトの一部ではありません。詳細情報は [こちら]({1}) をクリックしてください。",
+			"typescript.noTypeScriptProjectConfig": "ファイルは TypeScript プロジェクトの一部ではありません。詳細情報は [こちら]({0}) をクリックしてください。",
+			"typescript.noJavaScriptProjectConfig": "ファイルは JavaScript プロジェクトの一部ではありません。詳細情報は [こちら]({0}) をクリックしてください。",
 			"typescript.projectConfigNoWorkspace": "TypeScript または JavaScript プロジェクトを使用するには、VS Code でフォルダーを開いてください",
 			"typescript.projectConfigUnsupportedFile": "TypeScript または JavaScript のプロジェクトを判別できませんでした。サポートされていないファイルの種類です",
 			"typescript.projectConfigCouldNotGetInfo": "TypeScript または JavaScript のプロジェクトを判別できませんでした"
@@ -156,11 +166,19 @@
 		"dist/languageFeatures/codeLens/baseCodeLensProvider": {
 			"referenceErrorLabel": "参照を判別できませんでした"
 		},
+		"dist/languageFeatures/codeLens/implementationsCodeLens": {
+			"oneImplementationLabel": "1 個の実装",
+			"manyImplementationLabel": "{0} 個の実装"
+		},
+		"dist/languageFeatures/codeLens/referencesCodeLens": {
+			"oneReferenceLabel": "1 個の参照",
+			"manyReferenceLabel": "{0} 個の参照"
+		},
 		"dist/languageFeatures/completions": {
+			"autoImportLabel": "{0} から自動インポート",
 			"selectCodeAction": "適用するコード アクションを選択",
 			"acquiringTypingsLabel": "typings の定義ファイルを取得中...",
-			"acquiringTypingsDetail": "IntelliSense の Typings の定義ファイルを取得しています。",
-			"autoImportLabel": "{0} から自動インポート"
+			"acquiringTypingsDetail": "IntelliSense の Typings の定義ファイルを取得しています。"
 		},
 		"dist/languageFeatures/directiveCommentCompletions": {
 			"ts-check": "JavaScript ファイルのセマンティック チェックを有効にします。 ファイルの先頭にある必要があります。",
@@ -168,9 +186,17 @@
 			"ts-ignore": "ファイルの次の行で @ts-check エラーを抑制します。",
 			"ts-expect-error": "ファイルの次の行で @ts-check エラーを表示しません。少なくとも 1 つ存在する必要があります。"
 		},
-		"dist/languageFeatures/codeLens/implementationsCodeLens": {
-			"oneImplementationLabel": "1 個の実装",
-			"manyImplementationLabel": "{0} 個の実装"
+		"dist/languageFeatures/fileReferences": {
+			"error.unsupportedVersion": "ファイル参照の検索に失敗しました。TypeScript 4.2 以降が必要です。",
+			"error.noResource": "ファイル参照の検索に失敗しました。リソースが指定されていません。",
+			"error.unsupportedLanguage": "ファイル参照の検索に失敗しました。サポートされていないファイルの種類です。",
+			"error.unknownFile": "ファイル参照の検索に失敗しました。ファイルの種類が不明です。",
+			"progress.title": "ファイル参照の検索中"
+		},
+		"dist/languageFeatures/fixAll": {
+			"autoFix.label": "すべて修正",
+			"autoFix.unused.label": "未使用のコードをすべて削除する",
+			"autoFix.missingImports.label": "見つからないインポートをすべて追加する"
 		},
 		"dist/languageFeatures/jsDocCompletions": {
 			"typescript.jsDocCompletionItem.documentation": "JSDoc コメント"
@@ -181,11 +207,6 @@
 		"dist/languageFeatures/quickFix": {
 			"fixAllInFileLabel": "{0} (ファイルの中のすべてを修正する)"
 		},
-		"dist/languageFeatures/fixAll": {
-			"autoFix.label": "すべて修正",
-			"autoFix.unused.label": "未使用のコードをすべて削除する",
-			"autoFix.missingImports.label": "見つからないインポートをすべて追加する"
-		},
 		"dist/languageFeatures/refactor": {
 			"refactoringFailed": "リファクタリングを適用できませんでした。",
 			"extractConstant.disabled.title": "定数への抽出",
@@ -194,16 +215,13 @@
 			"extractFunction.disabled.reason": "現在の選択範囲を抽出できません",
 			"refactor.documentation.title": "JS/TS リファクタリングの詳細"
 		},
-		"dist/languageFeatures/codeLens/referencesCodeLens": {
-			"oneReferenceLabel": "1 個の参照",
-			"manyReferenceLabel": "{0} 個の参照"
-		},
 		"dist/languageFeatures/rename": {
 			"fileRenameFail": "ファイル名を変更中にエラーが発生しました"
 		},
 		"dist/tsServer/versionStatus": {
 			"projectQuickPick.placeholder": "TypeScript プロジェクト情報",
 			"projectQuickPick.version.label": "TypeScript のバージョンを選択...",
+			"projectQuickPick.version.description": "[現在 = {0}]",
 			"projectQuickPick.project.create": "tsconfig を作成する",
 			"projectQuickPick.project.create.description": "このファイルは現在、tsconfig/jsconfig プロジェクトの一部ではありません",
 			"projectQuickPick.version.goProjectConfig": "tsconfig を開く",
@@ -235,18 +253,6 @@
 		},
 		"dist/utils/logger": {
 			"channelName": "TypeScript"
-		},
-		"dist/utils/typingsStatus": {
-			"installingPackages": "より適した TypeScript IntelliSense に関するデータをフェッチしています",
-			"typesInstallerInitializationFailed.doNotCheckAgain": "今後表示しない",
-			"typesInstallerInitializationFailed.title": "JavaScript 言語機能のための型定義ファイルをインストールできませんでした。NPM のインストールを確認するか、ユーザー設定で 'typescript.npm' を構成してください。詳細は [こちら]({0}) をクリックしてください。"
-		},
-		"dist/utils/largeProjectStatus": {
-			"statusExclude": "TypeScript: 除外の構成",
-			"hintExclude": "プロジェクト全体の JavaScript/TypeScript 言語機能を有効にするには、多数のファイルが含まれるフォルダーを除外します。例: {0}",
-			"hintExclude.generic": "プロジェクト全体の JavaScript/TypeScript 言語機能を有効にするには、作業していないソース ファイルが含まれるサイズの大きなフォルダーを除外します。",
-			"large.label": "除外の構成",
-			"hintExclude.tooltip": "プロジェクト全体の JavaScript/TypeScript 言語機能を有効にするには、作業していないソース ファイルが含まれるサイズの大きなフォルダーを除外します。"
 		},
 		"dist/languageFeatures/updatePathsOnRename": {
 			"renameProgress.title": "JS/TS インポートの更新を確認しています",
